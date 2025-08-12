@@ -27,32 +27,66 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lombok:wght@400;700&display=swap');
+
         body {
             font-family: 'Inter', sans-serif;
             font-feature-settings: 'kern' 1, 'liga' 1;
         }
+
+        .hero-text {
+            font-size: clamp(3rem, 8vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+        }
+
         .fade-up {
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .stagger-1 { transition-delay: 0.1s; }
-        .stagger-2 { transition-delay: 0.2s; }
-        .stagger-3 { transition-delay: 0.3s; }
+
+        .stagger-1 {
+            transition-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            transition-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            transition-delay: 0.3s;
+        }
+
+        .stagger-4 {
+            transition-delay: 0.4s;
+        }
+
         .music-card {
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+
         .music-card:hover {
             transform: translateY(-8px);
         }
+
         .nav-link {
             position: relative;
             transition: color 0.3s ease;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -63,8 +97,31 @@
             background-color: currentColor;
             transition: width 0.3s ease;
         }
+
         .nav-link:hover::after {
             width: 100%;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6B8E5A 0%, #8B7355 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -80,7 +137,7 @@
                     <a href="#about" class="nav-link text-sm font-medium uppercase tracking-wider">About</a>
                     <a href="#contact" class="nav-link text-sm font-medium uppercase tracking-wider">Contact</a>
                 </div>
-                <button onclick="toggleMenu()" class="md:hidden" aria-label="Toggle menu">
+                <button onclick="toggleMenu()" class="md:hidden">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"></path>
@@ -98,13 +155,18 @@
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto text-center pt-24">
+        <div class="max-w-7xl mx-auto text-center">
             <div class="fade-up max-w-2xl mx-auto">
                 <p class="text-lg text-stone/80 mb-12">Memphis, Tennessee</p>
             </div>
+
+            <!-- Hero Photo -->
             <div class="fade-up stagger-2 mb-12">
                 <div class="max-w-6xl mx-auto relative">
+                    <!-- Shadow behind photo -->
                     <div class="absolute inset-0 rounded-3xl bg-charcoal/30 transform translate-x-4 translate-y-4 blur-xl"></div>
+
+                    <!-- Main photo container -->
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-white">
                         <img src="https://lh3.googleusercontent.com/d/1XcvGJYQY_KXi3XYvIOHyzWDCp-mDvaiS"
                             alt="Dorian - Christian Rap Artist" class="w-full h-auto object-cover"
@@ -112,7 +174,8 @@
                         <div class="w-full aspect-[16/10] bg-gradient-to-br from-sage/20 to-forest/30 flex items-center justify-center"
                             style="display: none;">
                             <div class="text-center">
-                                <div class="w-24 h-24 bg-sage rounded-full mx-auto mb-6 flex items-center justify-center">
+                                <div
+                                    class="w-24 h-24 bg-sage rounded-full mx-auto mb-6 flex items-center justify-center">
                                     <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -126,6 +189,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="fade-up stagger-3">
                 <a href="#music"
                     class="inline-flex items-center px-8 py-4 bg-charcoal text-cream font-medium rounded-full hover:bg-forest transition-colors duration-300">
@@ -142,18 +206,36 @@
     <section id="music" class="py-32 px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
             <div class="fade-up mb-24">
-                <h2 class="text-4xl font-black mb-6">Coming 2025</h2>
+                <h2 class="section-title font-black mb-6">Coming 2025</h2>
                 <p class="text-xl text-stone max-w-2xl">Three new tracks blending authentic trap melodies with Kingdom
                     purpose.</p>
             </div>
+
             <div class="grid lg:grid-cols-3 gap-8">
-                <!-- Repeat your music cards here -->
-                <!-- Example Music Card -->
+                <!-- Glory Cloud -->
                 <div class="fade-up stagger-1">
-                    <div class="music-card bg-white rounded-3xl p-12 h-full border border-stone/5 flex flex-col justify-between">
+                    <div
+                        class="music-card bg-white rounded-3xl p-12 h-full border border-stone/5 flex flex-col justify-between">
                         <div>
                             <div class="w-full aspect-square mb-8 rounded-2xl overflow-hidden bg-gray-100">
-                                <img src="https://lh3.googleusercontent.com/d/1P8Xt-aeeWG5CxLrkZyVBP7lYfnGXikh3" alt="Glory Cloud Cover Art" class="w-full h-full object-cover" />
+                                <img src="https://lh3.googleusercontent.com/d/1P8Xt-aeeWG5CxLrkZyVBP7lYfnGXikh3" alt="Glory Cloud Cover Art"
+                                    class="w-full h-full object-cover"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <div class="w-full h-full bg-gradient-to-br from-sage/20 to-forest/30 flex items-center justify-center"
+                                    style="display: none;">
+                                    <div class="text-center">
+                                        <div
+                                            class="w-16 h-16 bg-sage rounded-full mx-auto mb-4 flex items-center justify-center">
+                                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM15.657 6.343a1 1 0 011.414 0A9.972 9.972 0 0119 12a9.972 9.972 0 01-1.929 5.657 1 1 0 11-1.414-1.414A7.971 7.971 0 0017 12c0-1.594-.471-3.078-1.343-4.243a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 12a5.983 5.983 0 01-.757 2.829 1 1 0 11-1.415-1.414A3.987 3.987 0 0013 12a3.987 3.987 0 00-.172-1.415 1 1 0 010-1.414z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-sm text-stone font-medium">Glory Cloud</p>
+                                        <p class="text-xs text-stone/60">Cover Art</p>
+                                    </div>
+                                </div>
                             </div>
                             <h3 class="text-3xl font-bold mb-4 tracking-tight">Glory Cloud</h3>
                             <p class="text-stone leading-relaxed mb-8">A powerful anthem about walking in God's presence
@@ -166,7 +248,79 @@
                         </div>
                     </div>
                 </div>
-                <!-- Add more cards similarly -->
+
+                <!-- Crown -->
+                <div class="fade-up stagger-2">
+                    <div
+                        class="music-card bg-white rounded-3xl p-12 h-full border border-stone/5 flex flex-col justify-between">
+                        <div>
+                            <div class="w-full aspect-square mb-8 rounded-2xl overflow-hidden bg-gray-100">
+                                <img src="https://lh3.googleusercontent.com/d/1bjfSRP80et6faJmG055j3c8rOlCXHv4B" alt="Crown Cover Art"
+                                    class="w-full h-full object-cover"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <div class="w-full h-full bg-gradient-to-br from-earth/20 to-charcoal/30 flex items-center justify-center"
+                                    style="display: none;">
+                                    <div class="text-center">
+                                        <div
+                                            class="w-16 h-16 bg-earth rounded-full mx-auto mb-4 flex items-center justify-center">
+                                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-sm text-stone font-medium">Crown</p>
+                                        <p class="text-xs text-stone/60">Cover Art</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-4 tracking-tight">Crown</h3>
+                            <p class="text-stone leading-relaxed mb-8">Celebrating the crown of life and eternal victory
+                                found in Christ Jesus.</p>
+                        </div>
+                        <div>
+                            <span
+                                class="inline-block px-4 py-2 bg-earth/10 text-earth text-sm font-medium rounded-full">Coming
+                                Soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kite -->
+                <div class="fade-up stagger-3">
+                    <div
+                        class="music-card bg-white rounded-3xl p-12 h-full border border-stone/5 flex flex-col justify-between">
+                        <div>
+                            <div class="w-full aspect-square mb-8 rounded-2xl overflow-hidden bg-gray-100">
+                                <img src="https://lh3.googleusercontent.com/d/1P6CDJLOIMk7w51D9zJCHFUbDkMrfgkZJ" alt="Kite Cover Art"
+                                    class="w-full h-full object-cover"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <div class="w-full h-full bg-gradient-to-br from-forest/20 to-sage/30 flex items-center justify-center"
+                                    style="display: none;">
+                                    <div class="text-center">
+                                        <div
+                                            class="w-16 h-16 bg-forest rounded-full mx-auto mb-4 flex items-center justify-center">
+                                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-sm text-stone font-medium">Kite</p>
+                                        <p class="text-xs text-stone/60">Cover Art</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-4 tracking-tight">Kite</h3>
+                            <p class="text-stone leading-relaxed mb-8">Rising above circumstances with unwavering faith
+                                and divine elevation.</p>
+                        </div>
+                        <div>
+                            <span
+                                class="inline-block px-4 py-2 bg-forest/10 text-forest text-sm font-medium rounded-full">Coming
+                                Soon</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -175,113 +329,18 @@
     <section id="about" class="py-32 px-6 lg:px-8 bg-white">
         <div class="max-w-5xl mx-auto">
             <div class="fade-up mb-24">
-                <h2 class="text-4xl font-black mb-6">About</h2>
+                <h2 class="section-title font-black mb-6">About</h2>
             </div>
+
             <div class="grid lg:grid-cols-12 gap-16 items-start">
                 <div class="lg:col-span-4 fade-up stagger-1">
                     <div class="sticky top-32">
                         <h3 class="text-2xl font-bold mb-6">From Memphis Streets to Kingdom Beats</h3>
                         <div class="w-12 h-1 bg-sage mb-8"></div>
-                        <p class="text-stone text-sm uppercase tracking-wider font-medium mb-8">Whitehaven, Memphis, TN</p>
+                        <p class="text-stone text-sm uppercase tracking-wider font-medium mb-8">Whitehaven, Memphis,
+                            TN</p>
+
+                        <!-- Photo -->
                         <div class="mb-8">
                             <div class="relative rounded-2xl overflow-hidden shadow-xl">
-                                <img src="https://lh3.googleusercontent.com/d/1z3x_8b1JGDpD1d8Mo4KHcOtplheYrVRb" alt="Dorian - Christian Rap Artist" class="w-full h-auto object-cover" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:col-span-8 fade-up stagger-2">
-                    <div class="prose prose-lg max-w-none">
-                        <p class="text-xl leading-relaxed mb-8 text-charcoal">Born and raised in the Whitehaven area of Memphis, Tennessee, Dorian grew up loving rap music and trap beats that shaped his musical world.</p>
-                        <p class="leading-relaxed mb-8 text-stone">He had natural talent for writing lyrics and understanding rap music, and it seemed like he would make secular music. Everything changed when Dorian gave his life to Jesus. In that life-changing moment, he thought he had to give up his musical skills and the trap beats that had always inspired him. He felt like his old life, including his rap talents, needed to be left behind.</p>
-                        <p class="leading-relaxed mb-8 text-stone">But God had different plans. Dorian's wife encouraged him and helped him see that his musical skills weren't something to give up, but gifts to use for serving God. Her support started a new creative journey that would shape his music.</p>
-                        <div class="bg-sage/5 rounded-2xl p-8 my-12">
-                            <blockquote class="text-xl font-medium text-charcoal italic">
-                                "Using my gifts to serve God — this is where my creativity meets my faith."
-                            </blockquote>
-                        </div>
-                        <p class="leading-relaxed text-stone">Today, Dorian's goals are clear: Please God first, lead his family well, be a faithful laborer, and one day hear God say "well done."</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-32 px-6 lg:px-8 bg-charcoal text-cream">
-        <div class="max-w-5xl mx-auto">
-            <div class="fade-up mb-24 text-center">
-                <h2 class="text-4xl font-black mb-6 text-cream">Book Dorian</h2>
-                <p class="text-xl text-stone max-w-2xl mx-auto">Ready to bring Kingdom purpose to your event? Let's connect about booking opportunities.</p>
-            </div>
-            <div class="grid lg:grid-cols-2 gap-16 items-start">
-                <div class="fade-up stagger-1">
-                    <h3 class="text-2xl font-bold mb-8 text-cream">Get In Touch</h3>
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-sage rounded-full flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-cream mb-2">Email</h4>
-                                <p class="text-stone">doriantatemusic@gmail.com</p>
-                                <p class="text-sm text-stone/70 mt-1">For all booking inquiries</p>
-                            </div>
-                        </div>
-                        <!-- Add other contact info here -->
-                    </div>
-                </div>
-                <div class="fade-up stagger-2">
-                    <div class="bg-cream rounded-3xl p-8">
-                        <h3 class="text-2xl font-bold mb-6 text-charcoal">Send a Message</h3>
-                        <form class="space-y-6" onsubmit="handleFormSubmit(event)">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-charcoal mb-2">Name *</label>
-                                    <input type="text" id="name" name="name" required
-                                        class="w-full px-4 py-3 border border-stone/20 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent" />
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-charcoal mb-2">Email
-                                        *</label>
-                                    <input type="email" id="email" name="email" required
-                                        class="w-full px-4 py-3 border border-stone/20 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent" />
-                                </div>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="organization" class="block text-sm font-medium text-charcoal mb-2">Church/Organization</label>
-                                    <input type="text" id="organization" name="organization"
-                                        class="w-full px-4 py-3 border border-stone/20 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent" />
-                                </div>
-                                <div>
-                                    <label for="event-date" class="block text-sm font-medium text-charcoal mb-2">Event Date</label>
-                                    <input type="date" id="event-date" name="event-date"
-                                        class="w-full px-4 py-3 border border-stone/20 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent" />
-                                </div>
-                            </div>
-                            <div>
-                                <label for="event-type" class="block text-sm font-medium text-charcoal mb-2">Event Type</label>
-                                <select id="event-type" name="event-type"
-                                    class="w-full px-4 py-3 border border-stone/20 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent">
-                                    <option value="">Select event type</option>
-                                    <option value="church-service">Church Service</option>
-                                    <option value="youth-event">Youth Event</option>
-                                    <option value="conference">Conference</option>
-                                    <option value="festival">Festival</option>
-                                    <option value="outreach">Community Outreach</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-charcoal mb-2">Message
-                                    *</label>
-                                <textarea id="message" name="message" rows="4" required
-                                    placeholder="Tell us about your event, expected attendance, and any specific requirements..."
-                                    class="w-full px-4 py-3 border border-stone/20 rounded-xl focus:ring-2 focus:ring-sage focus:border-transparent resize-none"></textarea>
-                            </div>
-                            <button type="submit"
-                                class="w-full bg-charcoal text-cream py-4 px-6 rounded-xl font-semibold hover:bg-forest transition-colors duration-300">
-                                Send Booking
+                                <img src="https://lh3.googleusercontent.com/d/1z
